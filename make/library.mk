@@ -5,16 +5,13 @@ FAT_LIB_PLIST_DIR = $(ARCH_BUILD_DIR)/plists
 FAT_LIB_PLISTS = \
   $(foreach src,$(FAT_LIB_SOURCES_RELATIVE),$(FAT_LIB_PLIST_DIR)/$(basename $(src)).plist)
 
-FAT_LIB_MACOSX_SDK_DIR := $(shell bash $(SYSROOT_SCRIPT))
 FAT_LIB_IPHONE_SDK_DIR := $(shell bash $(SYSROOT_SCRIPT) --iphoneos)
+
 FAT_LIB_SIMULATOR_SDK_DIR := $(shell bash $(SYSROOT_SCRIPT) --iphonesimulator)
 
-FAT_LIB_MACOSX_FLAGS = -isysroot $(FAT_LIB_MACOSX_SDK_DIR)
-FAT_LIB_IPHONE_FLAGS = -arch armv7 -miphoneos-version-min=5.0 -isysroot $(FAT_LIB_IPHONE_SDK_DIR)
-FAT_LIB_IPHONE64_FLAGS = -arch arm64 -miphoneos-version-min=5.0 -isysroot $(FAT_LIB_IPHONE_SDK_DIR)
-FAT_LIB_IPHONEV7S_FLAGS = -arch armv7s -miphoneos-version-min=5.0 -isysroot $(FAT_LIB_IPHONE_SDK_DIR)
-FAT_LIB_SIMULATOR_FLAGS = -arch i386 -miphoneos-version-min=5.0 -isysroot $(FAT_LIB_SIMULATOR_SDK_DIR)
-FAT_LIB_XCODE_FLAGS = $(ARCH_FLAGS) -miphoneos-version-min=5.0 -isysroot $(SDKROOT)
+FAT_LIB_IPHONE64_FLAGS = -arch arm64 -miphoneos-version-min=11.0 -isysroot $(FAT_LIB_IPHONE_SDK_DIR) -fembed-bitcode
+FAT_LIB_SIMULATOR_FLAGS = -arch x86_64 -miphoneos-version-min=11.0 -isysroot $(FAT_LIB_SIMULATOR_SDK_DIR) -fembed-bitcode
+FAT_LIB_XCODE_FLAGS = $(ARCH_FLAGS) -miphoneos-version-min=11.0 -isysroot $(SDKROOT) -fembed-bitcode
 
 ifdef FAT_LIB_PRECOMPILED_HEADER
 #ifndef CONFIGURATION_BUILD_DIR
@@ -30,11 +27,8 @@ fat_lib_filtered_libtool = set -o pipefail && $(LIBTOOL) -static -o $1 -filelist
 ifneq ($(MAKECMDGOALS),clean)
 
 arch_flags = $(strip \
-  $(patsubst macosx,$(FAT_LIB_MACOSX_FLAGS),\
-  $(patsubst iphone,$(FAT_LIB_IPHONE_FLAGS),\
   $(patsubst iphone64,$(FAT_LIB_IPHONE64_FLAGS),\
-  $(patsubst iphonev7s,$(FAT_LIB_IPHONEV7S_FLAGS),\
-  $(patsubst simulator,$(FAT_LIB_SIMULATOR_FLAGS),$(1)))))))
+  $(patsubst simulator,$(FAT_LIB_SIMULATOR_FLAGS),$(1))))
 
 fat_lib_dependencies:
 	@:
