@@ -1,5 +1,5 @@
 class.list: dependencies/class-exclude.grep dependencies/hppc/target/generated-sources j2objc
-	find graphhopper/core/src/main/java graphhopper/api/src/main/java dependencies/hppc/hppc/src/main/java dependencies/hppc/hppc/target/generated-sources  dependencies/jackson-annotations dependencies/jts/modules/core/src/main/java -name '*.java' | grep -vf dependencies/class-exclude.grep > $@
+	find graphhopper/core/src/main/java graphhopper/api/src/main/java graphhopper/web-api/src/main/java dependencies/hppc/hppc/src/main/java dependencies/hppc/hppc/target/generated-sources  dependencies/jackson-annotations dependencies/jts/modules/core/src/main/java -name '*.java' | grep -vf dependencies/class-exclude.grep > $@
 	find dependencies/fake_slf4j/src -name '*.java' >> $@
 
 j2objc:
