@@ -4,8 +4,8 @@
 
 [submodule "graphhopper"]
 	path = graphhopper
-	url = https://github.com/graphhopper/graphhopper
-	branch = ios_compatibility
+	url = https://github.com/DroidsOnRoids/graphhopper
+	branch = 1.0-ios_compatibility
 [submodule "dependencies/hppc"]
 	path = dependencies/hppc
 	url = https://github.com/carrotsearch/hppc/
