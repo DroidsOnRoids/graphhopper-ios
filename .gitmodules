@@ -8,3 +8,7 @@
 [submodule "dependencies/jts"]
 	path = dependencies/jts
 	url = https://github.com/locationtech/jts.git
+[submodule "graphhopper"]
+	path = graphhopper
+	url = https://github.com/DroidsOnRoids/graphhopper.git
+	branch = 1.0-ios_compatibility
