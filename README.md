@@ -24,9 +24,12 @@ To get started run the following commands in Terminal:
 git clone --recursive https://github.com/graphhopper/graphhopper-ios.git
 cd graphhopper-ios
 make class.list
+make optimize    # optionally
 make translate
 open graphhopper-ios-sample/graphhopper-ios-sample.xcodeproj
 ```
+
+Running `make optimize` optionally before `make translate` will use ProGuard to remove dead code from translated sources. Project provides 2 config files: `proguard-full.cfg` and `proguard-slim.cfg`. `Full` config will create a binary with all graphhopper classes, where `silm` config will create a binary with just the classes necessary by the project.
 
 Switch to graphhopper project build
 Switch to graphhoppper-ios-sample -> build (two times, first time usually gives error)

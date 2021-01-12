@@ -3,9 +3,11 @@
 xcuserdata
 /build/
 /j2objc/
+/proguard/
 /src/
 ._j2objc
 *~
 *.swp
 node_modules
 class.list
+*.class
