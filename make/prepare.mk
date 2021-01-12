@@ -10,5 +10,13 @@ this may take some time... To skip this, manually place the j2objc dist director
 	mv j2objc-2.5 j2objc; \
 	rm j2objc-2.5.zip
 
+proguard:
+	@echo "warning: 'proguard' doesn't exist and needs to be downloaded, \
+this may take some time... To skip this, manually place the proguard dist directory at /graphhopper-ios/proguard."
+	@curl -L -o proguard-7.0.1.tar.gz "https://github.com/Guardsquare/proguard/releases/download/v7.0.1/proguard-7.0.1.tar.gz"; \
+	tar -xf proguard-7.0.1.tar.gz; \
+	mv proguard-7.0.1 proguard; \
+	rm proguard-7.0.1.tar.gz
+
 dependencies/hppc/target/generated-sources :
 	bash -c "cd dependencies/hppc; mvn generate-sources"

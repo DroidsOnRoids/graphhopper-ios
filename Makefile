@@ -6,6 +6,7 @@ default:
 
 include make/common.mk
 include make/prepare.mk
+include make/proguard.mk
 
 GEN_OBJC_DIR := src
 TRANSLATE_LIST := class.list
