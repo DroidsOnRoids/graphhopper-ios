@@ -11,4 +11,4 @@
 [submodule "graphhopper"]
 	path = graphhopper
 	url = https://github.com/DroidsOnRoids/graphhopper.git
-	branch = 2.0-ios_compatibility
+	branch = 3.0-ios_compatibility
