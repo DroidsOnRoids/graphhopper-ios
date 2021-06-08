@@ -1,5 +1,5 @@
 .SUFFIXES:
-.PHONY: default clean cleanall install
+.PHONY: default headers clean cleanall install
 
 default:
 	@:
@@ -9,6 +9,7 @@ include make/prepare.mk
 include make/proguard.mk
 
 GEN_OBJC_DIR := src
+HEADERS_DIR := headers
 TRANSLATE_LIST := class.list
 TRANSLATE_JAVA_FULL = $(shell if [ -e $(TRANSLATE_LIST) ]; then cat $(TRANSLATE_LIST); fi)
 TRANSLATE_JAVA_RELATIVE = $(shell if [ -e $(TRANSLATE_LIST) ]; then sed -f dependencies/class.sed $(TRANSLATE_LIST); fi)
@@ -43,12 +44,15 @@ $(ARCH_BUILD_DIR) $(TRANSLATIONS_DIR):
 
 default: class.list dirs $(TRANSLATIONS) translate $(FAT_LIB_LIBRARY)
 
+headers:
+	@rsync -am --include "*/" --include "*.h" --exclude "*" $(GEN_OBJC_DIR)/ $(HEADERS_DIR)/
+
 clean:
 	@echo Deleting $(ARCH_BUILD_DIR) $(ARCH_LIB_DIR)
 	@rm -rf $(ARCH_BUILD_DIR) $(ARCH_LIB_DIR)
 
 cleanall: clean
-	@echo Deleting $(GEN_OBJC_DIR) $(TRANSLATE_LIST)
-	@rm -rf $(GEN_OBJC_DIR) $(TRANSLATE_LIST)
+	@echo Deleting $(GEN_OBJC_DIR) $(TRANSLATE_LIST) $(HEADERS_DIR)
+	@rm -rf $(GEN_OBJC_DIR) $(TRANSLATE_LIST) $(HEADERS_DIR)
 
 install: default
