@@ -50,6 +50,10 @@ public class LoggerFactory {
                else
                  System.out.println(new java.util.Date().toString() + " " + type + " " + message + " " + t.toString());
             }
+
+            public boolean isTraceEnabled() {
+                return false;
+            }
         };
     }
 }

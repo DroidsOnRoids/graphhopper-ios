@@ -5,10 +5,10 @@ class.list: dependencies/class-exclude.grep dependencies/hppc/target/generated-s
 j2objc:
 	@echo "warning: 'j2objc' doesn't exist and needs to be downloaded, \
 this may take some time... To skip this, manually place the j2objc dist directory at /graphhopper-ios/j2objc."
-	@curl -L -o j2objc-2.5.zip "https://github.com/google/j2objc/releases/download/2.5/j2objc-2.5.zip"; \
-	unzip j2objc-2.5.zip; \
-	mv j2objc-2.5 j2objc; \
-	rm j2objc-2.5.zip
+	@curl -L -o j2objc-2.8.zip "https://github.com/google/j2objc/releases/download/2.8/j2objc-2.8.zip"; \
+	unzip j2objc-2.8.zip; \
+	mv j2objc-2.8 j2objc; \
+	rm j2objc-2.8.zip
 
 proguard:
 	@echo "warning: 'proguard' doesn't exist and needs to be downloaded, \

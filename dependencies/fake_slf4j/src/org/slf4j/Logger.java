@@ -11,5 +11,6 @@ public interface Logger {
  void trace(String str);
  void trace(String format, Object... arguments);
  void debug(String format, Object... arguments);
+ boolean isTraceEnabled();
 }
 
